@@ -60,7 +60,7 @@ add_executable(adrenaline_user
 target_link_libraries(adrenaline_user
   AdrenalineKernel_stub
   taihen_stub
-  vita2d
+  vita2d_fbo
   vitashaders
   c
   m
