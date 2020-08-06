@@ -159,6 +159,7 @@ user/flash0/vsh/
 cef/binary/binary.bin
 cef/binary/binary.h
 cef/payloadex/payloadex.bin
+cef/rebootex/rebootex.bin
 
 cef/updater/adrenaline_kernel.h
 cef/updater/adrenaline_user.h
