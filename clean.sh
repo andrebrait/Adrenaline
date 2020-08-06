@@ -9,6 +9,7 @@ declare -a files=(
     "kernel/build"
     "user/build"
     "vsh/build"
+    "user/flash0/kd/inferno.prx"
     "user/flash0/kd/popcorn.prx"
     "user/flash0/kd/systemctrl.prx"
     "user/flash0/kd/vshctrl.prx"
