@@ -19,7 +19,7 @@
 #ifndef __STATES_H__
 #define __STATES_H__
 
-#include <vita2d.h>
+#include <vita2d_fbo.h>
 
 #include "../adrenaline_compat.h"
 
