@@ -4,6 +4,16 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+if [ -z "${PSPDEV+x}" ]; then
+    export PSPDEV=/usr/local/pspdev
+    export PATH=$PATH:$PSPDEV/bin
+fi
+
+if [ -z "${VITASDK+x}" ]; then
+    export VITASDK=/usr/local/vitasdk
+    export PATH=$VITASDK/bin:$PATH
+fi
+
 declare -a files=(
     "bubble/build"
     "bubble/pkg/sce_module/adrenaline_kernel.skprx"
