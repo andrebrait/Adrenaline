@@ -4,4 +4,4 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-cd user && mkdir build && cd build && cmake .. && make all pkg updater
+cd user && mkdir build && cd build && cmake .. && make && make pkg && make updater

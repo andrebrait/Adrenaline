@@ -4,4 +4,4 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-cd vsh && mkdir build && cd build && cmake .. && make all pkg
+cd vsh && mkdir build && cd build && cmake .. && make && make pkg
