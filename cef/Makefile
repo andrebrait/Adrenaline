@@ -1,4 +1,4 @@
-all: _payloadex _rebootex _binary _systemctrl _popcorn _inferno _vshctrl _satelite _recovery
+all: _libpspsystemctrl_kernel _libpspsystemctrl_user _payloadex _rebootex _binary _systemctrl _popcorn _inferno _vshctrl _satelite _recovery
 
 _payloadex:
 	make -C payloadex clean
@@ -51,6 +51,16 @@ _recovery:
 	psp-packer recovery/recovery.prx
 	mkdir -p "../user/flash0/vsh/module" && cp "recovery/recovery.prx" "../user/flash0/vsh/module/recovery.prx"
 
+_libpspsystemctrl_kernel:
+	make -C lib/libpspsystemctrl_kernel clean
+	make -C lib/libpspsystemctrl_kernel
+	cp lib/libpspsystemctrl_kernel/libpspsystemctrl_kernel.a lib/
+
+_libpspsystemctrl_user:
+	make -C lib/libpspsystemctrl_user clean
+	make -C lib/libpspsystemctrl_user
+	cp lib/libpspsystemctrl_user/libpspsystemctrl_user.a lib/
+
 clean:
 	make -C payloadex clean
 	make -C rebootex clean
@@ -61,3 +71,5 @@ clean:
 	make -C satelite clean
 	make -C recovery clean
 	make -C inferno clean
+	make -C lib/libpspsystemctrl_kernel clean
+	make -C lib/libpspsystemctrl_user clean
