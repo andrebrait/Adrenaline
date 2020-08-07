@@ -1,10 +1,12 @@
 #!/bin/bash
 
-./clean.sh
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
 
 if [ -z "${PSPDEV+x}" ]; then
     export PSPDEV=/usr/local/pspdev
-    export PATH=$PSPDEV/bin:$PATH
+    export PATH=$PATH:$PSPDEV/bin
 fi
 
 if [ -z "${VITASDK+x}" ]; then
@@ -12,13 +14,11 @@ if [ -z "${VITASDK+x}" ]; then
     export PATH=$VITASDK/bin:$PATH
 fi
 
-# http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -euo pipefail
-IFS=$'\n\t'
+./clean.sh
 
-bash -c "cd cef && make"
-bash -c "cd kernel && mkdir build && cd build && cmake .. && make all pkg updater && make install"
-bash -c "cd vsh && mkdir build && cd build && cmake .. && make all pkg"
-bash -c "cd user && mkdir build && cd build && cmake .. && make all pkg updater"
-bash -c "cd cef && make -C updater"
-bash -c "cd bubble && mkdir build && cd build && cmake .. && make"
+buildscripts/cef.sh
+buildscripts/kernel.sh
+buildscripts/vsh.sh
+buildscripts/user.sh
+buildscripts/updater.sh
+buildscripts/bubble.sh

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# http://redsymbol.net/articles/unofficial-bash-strict-mode/
+set -euo pipefail
+IFS=$'\n\t'
+
 declare -a files=(
     "bubble/build"
     "bubble/pkg/sce_module/adrenaline_kernel.skprx"
@@ -22,3 +26,4 @@ for i in ${files[@]}; do
 done
 
 make -C cef clean
+make -C cef/updater clean

@@ -60,5 +60,4 @@ clean:
 	make -C vshctrl clean
 	make -C satelite clean
 	make -C recovery clean
-	make -C updater clean
 	make -C inferno clean
