@@ -4,4 +4,4 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-make -C cef/updater
+make -C cef/updater release
