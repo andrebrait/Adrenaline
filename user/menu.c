@@ -467,9 +467,9 @@ int AdrenalineDraw(SceSize args, void *argp) {
     return settings_semaid;
 
   // FPS counting
-  SceUInt64 cur_micros = 0, delta_micros = 0, last_micros = 0;
-  uint32_t frames = 0;
-  float fps = 0.0f;
+  // SceUInt64 cur_micros = 0, delta_micros = 0, last_micros = 0;
+  // uint32_t frames = 0;
+  // float fps = 0.0f;
 
   // keep track of entering pops mode
   int lastPops = 0;
@@ -650,25 +650,25 @@ int AdrenalineDraw(SceSize args, void *argp) {
     // pgf_draw_textf(0.0f, 0.0f, WHITE, FONT_SIZE, "FPS: %.2f", fps);
 
     // Calculate FPS
-    cur_micros = sceKernelGetProcessTimeWide();
-    if (cur_micros >= (last_micros + 1000000)) {
-      delta_micros = cur_micros - last_micros;
-      last_micros = cur_micros;
-      fps = (frames / (double)delta_micros) * 1000000.0f;
-      frames = 0;
-    }
+    // cur_micros = sceKernelGetProcessTimeWide();
+    // if (cur_micros >= (last_micros + 1000000)) {
+    //   delta_micros = cur_micros - last_micros;
+    //   last_micros = cur_micros;
+    //   fps = (frames / (double)delta_micros) * 1000000.0f;
+    //   frames = 0;
+    // }
 
     // End drawing
     vita2d_end_drawing();
     vita2d_swap_buffers();
-    frames++;
+    // frames++;
 
     // Sync
     if ((!adrenaline->pops_mode && !draw_native) || adrenaline->draw_psp_screen_in_pops)
       sceCompatLCDCSync();
     else
       sceDisplayWaitVblankStart();
-
+      
     // Ctrl
     if (menu_open)
       ctrlMenu();
