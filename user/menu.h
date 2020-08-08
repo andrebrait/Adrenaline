@@ -19,7 +19,7 @@
 #ifndef __MENU_H__
 #define __MENU_H__
 
-#include <vita2d_fbo.h>
+#include <vita2d.h>
 
 enum Colors {
     // Primary colors
