@@ -364,10 +364,7 @@ static int AdrenalinePowerTick(SceSize args, void *argp) {
 
 static int InitAdrenaline() {
   // Set GPU frequency to highest
-    // scePowerSetArmClockFrequency(444);
-    scePowerSetGpuClockFrequency(222);
-    // scePowerSetBusClockFrequency(222);
-    //scePowerSetGpuXbarClockFrequency(222);
+  scePowerSetGpuClockFrequency(222);
 
   // Enable screenshot
   sceScreenShotEnable();

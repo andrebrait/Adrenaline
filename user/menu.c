@@ -547,11 +547,7 @@ int AdrenalineDraw(SceSize args, void *argp) {
 
     // Do not draw if dialog is running
     if (sceCommonDialogIsRunning() || (config.graphics_filtering == 0 && menu_open == 0 && draw_native == 0)) {
-      if (config.graphics_filtering == 0) {
-        sceKernelDelayThread(4 * 1000);
-        sceCompatLCDCSync();
-      } else
-        sceDisplayWaitVblankStart();
+      sceDisplayWaitVblankStart();
       continue;
     }
 
