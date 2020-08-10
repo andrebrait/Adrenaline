@@ -389,7 +389,7 @@ int AdrenalineDraw(SceSize args, void *argp) {
   vita2d_init();
   font = vita2d_load_default_pgf();
 
-  vita2d_texture *native_tex = vita2d_create_empty_texture_data(SCREEN_WIDTH, SCREEN_HEIGHT, CONVERT_ADDRESS(NATIVE_FRAMEBUFFER), SCE_GXM_TEXTURE_FORMAT_U5U6U5_BGR);
+  vita2d_texture *native_tex = vita2d_create_empty_texture_data(SCREEN_WIDTH, SCREEN_HEIGHT, (void*)CONVERT_ADDRESS(NATIVE_FRAMEBUFFER), SCE_GXM_TEXTURE_FORMAT_U5U6U5_BGR);
   if (!native_tex)
     return -1;
 
