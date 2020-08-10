@@ -11,7 +11,7 @@ if [ -z "${VITASDK+x}" ]; then
     export PATH="${VITASDK}/bin:${PATH}"
 fi
 
-git clone --branch fbo_but_faster https://github.com/andrebrait/vita2dlib.git # TODO: change this to upstream/fbo after https://github.com/frangarcj/vita2dlib/pull/7 gets merged
+git clone --branch fbo https://github.com/frangarcj/vita2dlib.git
 cd vita2dlib
 git rev-parse --short HEAD > ${WORKDIR}/vita2dlib_fbo_rev.txt
 cd libvita2d
