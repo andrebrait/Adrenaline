@@ -4,7 +4,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-bash -c "cd buildscripts/docker_psptoolchain && ./build.sh"
-bash -c "cd buildscripts/docker && ./build.sh"
+bash -c "cd buildscripts/docker_psptoolchain && ./build.sh $@"
+bash -c "cd buildscripts/docker && ./build.sh $@"
 
-docker run -v"$(pwd)":/root/Adrenaline --rm com.github.theflow0.adrenaline_build:latest ./build.sh
+docker run -it -v"$(pwd)":/root/Adrenaline --rm com.github.theflow0.adrenaline_build:latest ./build.sh
