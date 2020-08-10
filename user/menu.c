@@ -466,10 +466,12 @@ int AdrenalineDraw(SceSize args, void *argp) {
   if (settings_semaid < 0)
     return settings_semaid;
 
+  #ifdef SHOW_FPS
   // FPS counting
-  // SceUInt64 cur_micros = 0, delta_micros = 0, last_micros = 0;
-  // uint32_t frames = 0;
-  // float fps = 0.0f;
+  SceUInt64 cur_micros = 0, delta_micros = 0, last_micros = 0;
+  uint32_t frames = 0;
+  float fps = 0.0f;
+  #endif
 
   // keep track of entering pops mode
   int lastPops = 0;
@@ -642,17 +644,19 @@ int AdrenalineDraw(SceSize args, void *argp) {
       sceGxmDraw(_vita2d_context, SCE_GXM_PRIMITIVE_TRIANGLE_FAN, SCE_GXM_INDEX_FORMAT_U16, flux_indices, 4);
     }
 
+    #ifdef SHOW_FPS
     // Show FPS
-    // pgf_draw_textf(0.0f, 0.0f, WHITE, FONT_SIZE, "FPS: %.2f", fps);
+    pgf_draw_textf(0.0f, 0.0f, WHITE, FONT_SIZE, "FPS: %.2f", fps);
 
     // Calculate FPS
-    // cur_micros = sceKernelGetProcessTimeWide();
-    // if (cur_micros >= (last_micros + 1000000)) {
-    //   delta_micros = cur_micros - last_micros;
-    //   last_micros = cur_micros;
-    //   fps = (frames / (double)delta_micros) * 1000000.0f;
-    //   frames = 0;
-    // }
+    cur_micros = sceKernelGetProcessTimeWide();
+    if (cur_micros >= (last_micros + 1000000)) {
+      delta_micros = cur_micros - last_micros;
+      last_micros = cur_micros;
+      fps = (frames / (double)delta_micros) * 1000000.0f;
+      frames = 0;
+    }
+    #endif
 
     // End drawing
     vita2d_end_drawing();
