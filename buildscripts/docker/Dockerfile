@@ -1,16 +1,54 @@
-FROM com.github.theflow0.psp_toolchain:latest
-
-WORKDIR /root
+FROM debian:10.5-slim
 
 RUN apt update \
-    && apt full-upgrade -y
+    && apt full-upgrade -y \
+    && apt install -y \
+        build-essential \
+        flex \
+        bison \
+        cmake \
+        git \
+        curl \
+        wget \
+        jq \
+        sudo \
+        python \
+        gcc-arm-linux-gnueabihf \
+        qemu-user-static \
+        zlib1g-dev
 
-COPY ./scripts scripts
-RUN chmod +x scripts/*.sh \
-    && scripts/build_psp-packer.sh \
-    && scripts/build_vdpm.sh \
-    && scripts/build_vita-shader-collection.sh \
-    && scripts/build_vita2dlib.sh \
-    && rm -rf scripts
+ENV PSPDEV "/usr/local/pspdev"
+ENV PATH "${PATH}:${PSPDEV}/bin"
+ENV VITASDK "/usr/local/vitasdk"
+ENV PATH "${VITASDK}/bin:${PATH}"
 
-WORKDIR /root/Adrenaline
+WORKDIR /root 
+COPY ./scripts/utils.sh scripts/utils.sh
+
+COPY ./scripts/psp_scripts scripts/psp_scripts
+
+# Putting in a separate layer because this downloads a lot of stuff
+RUN chmod +x scripts/psp_scripts/*.sh \
+    && scripts/psp_scripts/build_psptoolchain.sh \
+    && scripts/psp_scripts/build_psp-packer.sh
+
+# Putting in a separate layer because this downloads a lot of stuff
+COPY ./scripts/vita_scripts/build_vdpm.sh scripts/vita_scripts/build_vdpm.sh
+RUN chmod +x scripts/vita_scripts/build_vdpm.sh \
+    && scripts/vita_scripts/build_vdpm.sh
+
+COPY ./scripts/vita_scripts scripts/vita_scripts
+RUN chmod +x scripts/vita_scripts/*.sh \
+    && scripts/vita_scripts/build_vita-shader-collection.sh \
+    && scripts/vita_scripts/build_vita2dlib.sh \
+    && rm -rf scripts \
+    && apt remove -y \
+        git \
+        curl \
+        wget \
+        jq \
+        python \
+        gcc-arm-linux-gnueabihf \
+        qemu-user-static \
+        zlib1g-dev \
+    && apt autoremove -y

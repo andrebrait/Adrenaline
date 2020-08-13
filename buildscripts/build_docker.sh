@@ -7,7 +7,7 @@ IFS=$'\n\t'
 script_root="$(dirname "$(readlink -f $0)")"
 cd "${script_root}"
 
-docker build . \
-    -t "io.github.theflow.adrenaline_build:$(git rev-parse --short HEAD)" \
-    -t io.github.theflow.adrenaline_build:latest \
-    $@
+docker/build.sh $@
+
+cd ..
+docker run -it -v"$(pwd)":/root/Adrenaline --rm io.github.theflow.adrenaline_build:latest Adrenaline/buildscripts/build.sh

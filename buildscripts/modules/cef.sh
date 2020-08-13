@@ -4,4 +4,7 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-make -C cef/updater release
+script_root="$(dirname "$(readlink -f $0)")"
+cd "${script_root}"
+
+make -C ../../cef

@@ -14,11 +14,14 @@ if [ -z "${VITASDK+x}" ]; then
     export PATH="${VITASDK}/bin:${PATH}"
 fi
 
+script_root="$(dirname "$(readlink -f $0)")"
+cd "${script_root}"
+
 ./clean.sh
 
-buildscripts/cef.sh
-buildscripts/kernel.sh
-buildscripts/vsh.sh
-buildscripts/user.sh
-buildscripts/updater.sh
-buildscripts/bubble.sh
+modules/cef.sh
+modules/kernel.sh
+modules/vsh.sh
+modules/user.sh
+modules/updater.sh
+modules/bubble.sh

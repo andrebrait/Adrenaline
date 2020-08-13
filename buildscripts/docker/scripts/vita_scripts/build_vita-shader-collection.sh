@@ -4,21 +4,20 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+script_root="$(dirname "$(readlink -f $0)")"
+parent_dir="$(dirname "${script_root}")"
+. "${parent_dir}/utils.sh"
 WORKDIR="$(pwd)"
-
-if [ -z "${VITASDK+x}" ]; then
-    export VITASDK="/usr/local/vitasdk"
-    export PATH="${VITASDK}/bin:${PATH}"
-fi
+cd "${script_root}"
 
 git clone --branch master https://github.com/frangarcj/vita-shader-collection.git
 cd vita-shader-collection
-git rev-parse --short HEAD > ${WORKDIR}/vita-shader-collection_rev.txt
+store_git_rev "${WORKDIR}"
 
 git clone --branch master https://github.com/JagerDesu/vita-shaders.git
 cd vita-shaders
-git rev-parse --short HEAD > ${WORKDIR}/vita-shaders_rev.txt
-make CFLAGS="-std=gnu99"
+store_git_rev "${WORKDIR}"
+make CFLAGS="-std=gnu99 -Wall -O1"
 cp *.bin ../
 
 cd ..
@@ -26,5 +25,3 @@ sed -i -e 's|./gcc-linaro-4.9-2015.02-3-x86_64_arm-linux-gnueabihf/arm-linux-gnu
 make
 cp libvitashaders.a "${VITASDK}/arm-vita-eabi/lib/"
 cp shaders/*.h "${VITASDK}/arm-vita-eabi/include/"
-cd ../
-rm -rf vita-shader-collection

@@ -4,18 +4,15 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+script_root="$(dirname "$(readlink -f $0)")"
+parent_dir="$(dirname "${script_root}")"
+. "${parent_dir}/utils.sh"
 WORKDIR="$(pwd)"
-
-if [ -z "${VITASDK+x}" ]; then
-    export VITASDK="/usr/local/vitasdk"
-    export PATH="${VITASDK}/bin:${PATH}"
-fi
+cd "${script_root}"
 
 git clone --branch fbo https://github.com/frangarcj/vita2dlib.git
 cd vita2dlib
-git rev-parse --short HEAD > ${WORKDIR}/vita2dlib_fbo_rev.txt
+store_git_rev "${WORKDIR}"
 cd libvita2d
 make
 make install
-cd ../../
-rm -rf vita2dlib
