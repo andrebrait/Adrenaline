@@ -198,7 +198,7 @@ If a full rebuild is desired, however (e.g. to update the `vitasdk` version), yo
 ./buildscripts/build_docker.sh --no-cache
 ```
 
-The uncompressed modules get copied to `bubble/pkg/sce_modules`.
-The `eboot.bin` file get copied to `bubble/build/eboot.bin`.
-
-The packaged application is generated in `bubble/build/Adrenaline.vpk`.
+The final product from building is:
+* Uncompressed modules at `bubble/pkg/sce_modules`.
+* The `eboot.bin` file at `bubble/build/eboot.bin`.
+* The packaged application (includes all above) at `bubble/build/Adrenaline.vpk`.
