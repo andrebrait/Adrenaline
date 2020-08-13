@@ -28,7 +28,7 @@ COPY ./scripts/utils.sh scripts/utils.sh
 # Putting in a separate layer because this downloads a lot of stuff
 COPY ./scripts/psp_scripts scripts/psp_scripts
 RUN chmod +x scripts/psp_scripts/*.sh \
-    && scripts/psp_scripts/build_psptoolchain.sh \
+    && scripts/psp_scripts/build_pspdev.sh \
     && scripts/psp_scripts/build_psp-packer.sh
 
 # Putting in a separate layer because this downloads a lot of stuff
