@@ -17,7 +17,7 @@ store_git_rev "${WORKDIR}"
 git clone --branch master https://github.com/JagerDesu/vita-shaders.git
 cd vita-shaders
 store_git_rev "${WORKDIR}"
-make CFLAGS="-std=gnu99 -Wall -O1"
+make CFLAGS="-std=gnu99 -Wall -O1 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a9 -mfpu=neon -fsingle-precision-constant"
 cp *.bin ../
 
 cd ..
