@@ -56,8 +56,8 @@
 #include <sharp_bilinear_simple_v.h>
 #include <advanced_aa_v.h>
 #include <advanced_aa_f.h>
-#include "include/vflux_f.h"
-#include "include/vflux_v.h"
+#include "vflux_f.h"
+#include "vflux_v.h"
 
 static const SceGxmProgram *const gxm_program_vflux_v = (SceGxmProgram*)&vflux_v;
 static const SceGxmProgram *const gxm_program_vflux_f = (SceGxmProgram*)&vflux_f;
