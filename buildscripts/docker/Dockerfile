@@ -14,6 +14,7 @@ RUN apt update \
         sudo \
         python \
         gcc-arm-linux-gnueabihf \
+        qemu-kvm \
         qemu-user-static \
         zlib1g-dev
 
@@ -48,6 +49,7 @@ RUN chmod +x scripts/vita_scripts/*.sh \
         jq \
         python \
         gcc-arm-linux-gnueabihf \
+        qemu-kvm \
         qemu-user-static \
         zlib1g-dev \
     && apt autoremove -y
