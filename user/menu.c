@@ -44,20 +44,20 @@
 #include "utils.h"
 #include "math_utils.h"
 
-#include "includes/lcd3x_v.h"
-#include "includes/lcd3x_f.h"
-#include "includes/texture_v.h"
-#include "includes/texture_f.h"
-#include "includes/opaque_v.h"
-#include "includes/bicubic_f.h"
-#include "includes/sharp_bilinear_f.h"
-#include "includes/sharp_bilinear_v.h"
-#include "includes/sharp_bilinear_simple_f.h"
-#include "includes/sharp_bilinear_simple_v.h"
-#include "includes/advanced_aa_v.h"
-#include "includes/advanced_aa_f.h"
-#include "includes/vflux_f.h"
-#include "includes/vflux_v.h"
+#include <lcd3x_v.h>
+#include <lcd3x_f.h>
+#include <texture_v.h>
+#include <texture_f.h>
+#include <opaque_v.h>
+#include <bicubic_f.h>
+#include <sharp_bilinear_f.h>
+#include <sharp_bilinear_v.h>
+#include <sharp_bilinear_simple_f.h>
+#include <sharp_bilinear_simple_v.h>
+#include <advanced_aa_v.h>
+#include <advanced_aa_f.h>
+#include "include/vflux_f.h"
+#include "include/vflux_v.h"
 
 static const SceGxmProgram *const gxm_program_vflux_v = (SceGxmProgram*)&vflux_v;
 static const SceGxmProgram *const gxm_program_vflux_f = (SceGxmProgram*)&vflux_f;
