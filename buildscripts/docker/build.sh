@@ -9,5 +9,5 @@ cd "${script_root}"
 
 docker build . \
     -t "io.github.theflow.adrenaline_build:$(git rev-parse --short HEAD)" \
-    -t io.github.theflow.adrenaline_build:latest \
+    -t "io.github.theflow.adrenaline_build:latest" \
     $@
