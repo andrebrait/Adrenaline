@@ -661,7 +661,10 @@ int AdrenalineDraw(SceSize args, void *argp) {
     // End drawing
     vita2d_end_drawing();
     vita2d_swap_buffers();
-    // frames++;
+    
+    #ifdef SHOW_FPS
+    frames++;
+    #endif
 
     // Sync
     if ((!adrenaline->pops_mode && !draw_native) || adrenaline->draw_psp_screen_in_pops)
