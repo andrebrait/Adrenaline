@@ -5,23 +5,14 @@ set -euo pipefail
 IFS=$'\n\t'
 
 script_root="$(dirname "$(readlink -f $0)")"
-parent_dir="$(dirname "${script_root}")"
-. "${parent_dir}/utils.sh"
 WORKDIR="$(pwd)"
 cd "${script_root}"
 
-git clone --branch master https://github.com/frangarcj/vita-shader-collection.git
-cd vita-shader-collection
-store_git_rev "${WORKDIR}"
+latest_release_url="$(curl -L "https://api.github.com/repos/frangarcj/vita-shader-collection/releases?per_page=100" \
+    | jq -r '[.[] | select(.prerelease | not)][].assets[].browser_download_url' \
+    | grep 'master' \
+    | head -n 1)"
 
-git clone --branch master https://github.com/JagerDesu/vita-shaders.git
-cd vita-shaders
-store_git_rev "${WORKDIR}"
-make CFLAGS="-std=gnu99 -Wall -O1 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a9 -mfpu=neon"
-cp *.bin ../
+echo "$(basename "$(dirname "${latest_release_url}")")" > "${WORKDIR}/vita-shader-collection_rev.txt"
 
-cd ..
-sed -i -e 's|./gcc-linaro-4.9-2015.02-3-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/libc|/usr/arm-linux-gnueabihf|g' Makefile
-make
-cp libvitashaders.a "${VITASDK}/arm-vita-eabi/lib/"
-cp shaders/*.h "${VITASDK}/arm-vita-eabi/include/"
+curl -L "${latest_release_url}" | tar xvz --show-transformed --transform='s|includes|include|' -C "${VITASDK}/arm-vita-eabi"

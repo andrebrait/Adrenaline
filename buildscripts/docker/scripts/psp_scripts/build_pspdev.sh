@@ -8,7 +8,7 @@ script_root="$(dirname "$(readlink -f $0)")"
 WORKDIR="$(pwd)"
 cd "${script_root}"
 
-latest_release_url="$(curl "https://api.github.com/repos/pspdev/pspdev/releases?per_page=100" \
+latest_release_url="$(curl -L "https://api.github.com/repos/pspdev/pspdev/releases?per_page=100" \
     | jq -r '[.[] | select(.prerelease | not)][].assets[].browser_download_url' \
     | grep 'linux-x64' \
     | head -n 1)"

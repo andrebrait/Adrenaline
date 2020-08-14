@@ -13,9 +13,6 @@ RUN apt update \
         jq \
         sudo \
         python \
-        gcc-arm-linux-gnueabihf \
-        qemu-kvm \
-        qemu-user-static \
         zlib1g-dev
 
 ENV PSPDEV "/usr/local/pspdev"
@@ -48,8 +45,5 @@ RUN chmod +x scripts/vita_scripts/*.sh \
         wget \
         jq \
         python \
-        gcc-arm-linux-gnueabihf \
-        qemu-kvm \
-        qemu-user-static \
         zlib1g-dev \
     && apt autoremove -y
