@@ -9,15 +9,18 @@ Adrenaline is a software that modifies the official PSP Emulator using [taiHEN C
 to make it run a PSP 6.61 custom firmware. Thanks to the power of taiHEN, Adrenaline can
 inject custom code into the IPL which allows unsigned code to run at boottime.
 
-How to install
---------------
-1. Download [Adrenaline.vpk](https://github.com/TheOfficialFloW/Adrenaline/releases) and install it using [VitaShell](https://github.com/TheOfficialFloW/VitaShell/releases).
-2. Launch Adrenaline and press ❌ to download the 6.61 firmware. After finishing it will automatically terminate.
-3. Relaunch Adrenaline, this time it will go into pspemu mode. Follow the instructions on screen.
-
 How to update
 -------------
-If you have already been using Adrenaline and want to quickly update, simply open Adrenaline.vpk as zip file and copy all modules from sce_module to ux0:app/PSPEMUCFW/sce_module.
+If you have already been using Adrenaline, simply open Adrenaline.vpk as zip file and copy all modules from sce_module to ux0:app/PSPEMUCFW/sce_module.
+
+How to install
+--------------
+Please only do this approach for a fresh installation, otherwise please refer to the guide above.
+
+1. Remove the Adrenaline bubble and the `ux0:app/PSPEMUCFW/sce_module/adrenaline_kernel.skprx` path from the taiHEN config.txt and finally reboot your device.
+2. Download [Adrenaline.vpk](https://github.com/TheOfficialFloW/Adrenaline/releases) and install it using [VitaShell](https://github.com/TheOfficialFloW/VitaShell/releases).
+3. Launch Adrenaline and press ❌ to download the 6.61 firmware. After finishing it will automatically terminate.
+4. Relaunch Adrenaline, this time it will go into pspemu mode. Follow the instructions on screen.
 
 Getting rid of double launch bug
 --------------------------------
@@ -28,19 +31,12 @@ Adrenaline has been redesigned in `6.61 Adrenaline-6`, so you'd need to launch A
 ux0:app/PSPEMUCFW/sce_module/adrenaline_kernel.skprx
 ```
 
-Network update
---------------
-For 6.61 Adrenaline-6.4 or higher, you can use the `System Update` in the XMB to update Adrenaline to the latest version.
-1. Choose 'System Update' in XMB, then click `Update via Internet`.
-2. If a connection name does already exist, skip to step 5.
-3. Otherwise select `[New Connection]`, then `Enter Manually`, press RIGHT three times until you need to enter a connection name.
-4. Type any connection name and press RIGHT two times. You'll now see the message `Press the ❌/⭕ button to save settings`.
-5. Press ❌/⭕ on any connection name.
-6. Follow the instructions to update Adrenaline.
-7. After updating and rebooting you can then delete the update file.
-
 Changelog
 ---------
+
+### Changelog v7
+- Fixed issue where plugins were loaded in recovery mode.
+- Moved native display buffer to a different location, so GePatch works for some more games. Please note that only GePatch v0.18 or above will only work, older versions will cause a black screen. If you're using GTANativeRes, please download the latest binary as well.
 
 ### Changelog v6.9
 - Added support for native resolution patches.
